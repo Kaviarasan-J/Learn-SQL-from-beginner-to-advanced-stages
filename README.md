@@ -67,56 +67,49 @@ Databases we’ll practice on: MySQL, PostgreSQL, SQLite (feel free to pick you
 2.  Connect to the Database:
     
 
-sql
+```sql
 
-Copy code
-
-`-- Connect to MySQL mysql -u root -p`
+-- Connect to MySQL mysql -u root -p
+```
 
 3.  Create a Sample Database:
     
 
-sql
-
-Copy code
-
-`CREATE DATABASE practice_sql; USE practice_sql;`
+```sql
+CREATE DATABASE practice_sql; USE practice_sql;
+```
 
 4.  Create a Sample Table:
     
-
-sql
-
-Copy code
-
-`CREATE TABLE employees (     id INT PRIMARY KEY,     first_name VARCHAR(50),     last_name VARCHAR(50),     department VARCHAR(50),     salary DECIMAL(10,2),     hire_date DATE );`
-
-* * *
+```sql
+CREATE TABLE employees
+(     id INT PRIMARY KEY,
+      first_name VARCHAR(50),     
+      last_name VARCHAR(50),
+      department VARCHAR(50),
+      salary DECIMAL(10,2),
+      hire_date DATE
+);`
+```
 
 ## 🔍 Step 2: Basic SQL Queries
 
-# 
+# SELECT Statement: Retrieve Data
 
-SELECT Statement: Retrieve Data
-
-sql
-
-Copy code
-
-`SELECT first_name, last_name FROM employees;`
+```sql
+SELECT first_name, last_name FROM employees;
+```
 
 ✅ Explanation: Gets the first and last names of all employees.
+* * *
 
 SELECT with DISTINCT
 
-sql
-
-Copy code
-
-`SELECT DISTINCT department FROM employees;`
+```sql
+SELECT DISTINCT department FROM employees;
+```
 
 ✅ Explanation: Lists unique departments.
-
 * * *
 
 ## 🎯 Step 3: Filtering & Sorting Data
@@ -125,22 +118,19 @@ Copy code
 
 WHERE Clause: Filter Rows
 
-sql
-
-Copy code
-
-`SELECT * FROM employees WHERE department = 'Sales';`
+```sql
+SELECT * FROM employees
+WHERE department = 'Sales';
+```
 
 Comparison Operators: `=, <>, >, <, >=, <=`  
 Logical Operators: `AND, OR, NOT`
 
 ORDER BY: Sort Data
 
-sql
-
-Copy code
-
-`SELECT first_name, salary FROM employees ORDER BY salary DESC;`
+```sql
+SELECT first_name, salary FROM employees ORDER BY salary DESC;
+```
 
 ✅ Explanation: Sorts employees by salary, highest first.
 
@@ -157,19 +147,20 @@ Aggregate Functions:
 
 Example: Count Employees per Department
 
-sql
-
-Copy code
-
-`SELECT department, COUNT(*) AS total_employees FROM employees GROUP BY department;`
+```sql
+SELECT department, COUNT(*) AS total_employees
+FROM employees
+GROUP BY department;
+```
 
 HAVING Clause: Filter groups
 
-sql
-
-Copy code
-
-`SELECT department, AVG(salary) AS avg_salary FROM employees GROUP BY department HAVING AVG(salary) > 50000;`
+```sql
+SELECT department, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department
+HAVING AVG(salary) > 50000;
+```
 
 * * *
 
@@ -179,19 +170,15 @@ Copy code
 
 INNER JOIN: Combine Tables with Matching Data
 
-sql
-
-Copy code
-
-`SELECT e.first_name, d.department_name FROM employees e INNER JOIN departments d ON e.department = d.department_name;`
+```sql
+SELECT e.first_name, d.department_name FROM employees e INNER JOIN departments d ON e.department = d.department_name;
+```
 
 LEFT JOIN: Include all rows from the left table
 
-sql
-
-Copy code
-
-`SELECT e.first_name, d.department_name FROM employees e LEFT JOIN departments d ON e.department = d.department_name;`
+```sql
+SELECT e.first_name, d.department_name FROM employees e LEFT JOIN departments d ON e.department = d.department_name;
+```
 
 Tip: Use aliases (`e`, `d`) for readability.
 
@@ -203,11 +190,14 @@ Tip: Use aliases (`e`, `d`) for readability.
 
 Subquery Example:
 
-sql
-
-Copy code
-
-`SELECT first_name, last_name FROM employees WHERE department IN (     SELECT department_name     FROM departments     WHERE location = 'New York' );`
+```sql
+SELECT first_name, last_name
+FROM employees
+WHERE department IN (
+                        SELECT department_name
+                        FROM departments
+                        WHERE location = 'New York' );
+```
 
 ✅ Explanation: Finds employees in departments located in New York.
 
